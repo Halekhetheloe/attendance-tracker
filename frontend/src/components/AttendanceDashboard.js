@@ -15,11 +15,12 @@ const AttendanceDashboard = () => {
 
   const fetchAttendance = async () => {
     try {
+      console.log('Fetching from:', `${API_URL}/api/attendance`);
       const response = await axios.get(`${API_URL}/api/attendance`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error fetching attendance:', error);
-      alert('Failed to fetch attendance records');
+      alert('Failed to fetch attendance records: ' + error.message);
     } finally {
       setLoading(false);
     }

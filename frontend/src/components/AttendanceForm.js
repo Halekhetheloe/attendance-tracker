@@ -32,6 +32,7 @@ const AttendanceForm = ({ onAttendanceSubmitted }) => {
     setMessage({ type: '', text: '' });
 
     try {
+      console.log('API URL:', API_URL);
       const response = await axios.post(`${API_URL}/api/attendance`, formData);
       setMessage({ type: 'success', text: response.data.message });
       setFormData({
@@ -42,6 +43,7 @@ const AttendanceForm = ({ onAttendanceSubmitted }) => {
       });
       onAttendanceSubmitted();
     } catch (error) {
+      console.error('Error:', error);
       setMessage({ 
         type: 'error', 
         text: error.response?.data?.error || 'Failed to record attendance' 
