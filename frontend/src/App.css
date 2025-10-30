@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000000;
   color: white;
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -41,7 +41,7 @@ body {
 }
 
 .nav-btn {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
   border: 2px solid rgba(255,255,255,0.3);
   color: white;
   padding: 0.5rem 1.5rem;
@@ -52,13 +52,13 @@ body {
 }
 
 .nav-btn:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.2);
   transform: translateY(-2px);
 }
 
 .nav-btn.active {
   background: white;
-  color: #667eea;
+  color: #000000;
   border-color: white;
 }
 
@@ -109,12 +109,12 @@ body {
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #000000;
 }
 
 .submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000000;
   color: white;
   border: none;
   padding: 0.75rem;
@@ -122,10 +122,11 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
+  background: #333333;
   transform: translateY(-2px);
 }
 
@@ -191,7 +192,7 @@ body {
 
 .controls input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #000000;
 }
 
 .attendance-table {
@@ -255,37 +256,9 @@ body {
   color: #666;
 }
 
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .main-content {
-    padding: 1rem;
-  }
-  
-  .dashboard-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .controls {
-    justify-content: center;
-  }
-  
-  .attendance-table {
-    font-size: 0.9rem;
-  }
-  
-  .attendance-table th,
-  .attendance-table td {
-    padding: 0.5rem;
-  }
-}
 /* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000000;
   color: white;
   padding: 1.5rem 0;
   margin-top: auto;
@@ -331,8 +304,35 @@ body {
   padding: 2rem;
 }
 
-/* Responsive footer */
+/* Responsive Design */
 @media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .controls {
+    justify-content: center;
+  }
+  
+  .attendance-table {
+    font-size: 0.9rem;
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
+    padding: 0.5rem;
+  }
+  
   .footer {
     padding: 1rem 0;
   }
@@ -343,6 +343,6 @@ body {
   }
   
   .footer-links span:nth-child(2) {
-    display: none; /* Hide the bullet points on mobile */
+    display: none;
   }
 }
