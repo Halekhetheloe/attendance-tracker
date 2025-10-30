@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 const AttendanceForm = ({ onAttendanceSubmitted }) => {
   const [formData, setFormData] = useState({
     employeeName: '',
@@ -30,7 +32,7 @@ const AttendanceForm = ({ onAttendanceSubmitted }) => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await axios.post('/api/attendance', formData);
+      const response = await axios.post(`${API_URL}/api/attendance`, formData);
       setMessage({ type: 'success', text: response.data.message });
       setFormData({
         employeeName: '',

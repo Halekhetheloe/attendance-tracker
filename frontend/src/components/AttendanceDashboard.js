@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 const AttendanceDashboard = () => {
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ const AttendanceDashboard = () => {
 
   const fetchAttendance = async () => {
     try {
-      const response = await axios.get('/api/attendance');
+      const response = await axios.get(`${API_URL}/api/attendance`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error fetching attendance:', error);
@@ -30,7 +32,7 @@ const AttendanceDashboard = () => {
     }
 
     try {
-      const response = await axios.get(`/api/attendance/search?query=${searchQuery}`);
+      const response = await axios.get(`${API_URL}/api/attendance/search?query=${searchQuery}`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error searching attendance:', error);
@@ -45,7 +47,7 @@ const AttendanceDashboard = () => {
     }
 
     try {
-      const response = await axios.get(`/api/attendance/filter?date=${filterDate}`);
+      const response = await axios.get(`${API_URL}/api/attendance/filter?date=${filterDate}`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error filtering attendance:', error);
@@ -59,7 +61,7 @@ const AttendanceDashboard = () => {
     }
 
     try {
-      await axios.delete(`/api/attendance/${id}`);
+      await axios.delete(`${API_URL}/api/attendance/${id}`);
       setAttendance(attendance.filter(record => record.id !== id));
       alert('Attendance record deleted successfully');
     } catch (error) {
@@ -73,14 +75,6 @@ const AttendanceDashboard = () => {
     setFilterDate('');
     fetchAttendance();
   };
-
-  const filteredAttendance = attendance.filter(record => {
-    if (searchQuery) {
-      return record.employeeName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             record.employeeID.toLowerCase().includes(searchQuery.toLowerCase());
-    }
-    return true;
-  });
 
   if (loading) {
     return <div className="loading">Loading attendance records...</div>;
@@ -115,7 +109,7 @@ const AttendanceDashboard = () => {
         </div>
       </div>
 
-      {filteredAttendance.length === 0 ? (
+      {attendance.length === 0 ? (
         <div className="no-data">
           No attendance records found.
         </div>
@@ -131,7 +125,7 @@ const AttendanceDashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredAttendance.map((record) => (
+            {attendance.map((record) => (
               <tr key={record.id}>
                 <td>{record.employeeName}</td>
                 <td>{record.employeeID}</td>
